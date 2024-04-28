@@ -1,5 +1,6 @@
 import { Roboto } from "next/font/google";
 import "../styles/globals.css";
+import Navigation from "../components/Navigation/Navigation";
 
 const roboto = Roboto({
   weight: '400',
@@ -15,7 +16,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <div className="bg-blue-50 h-screen w-screen">
+          <Navigation />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
