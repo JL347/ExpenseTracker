@@ -1,3 +1,9 @@
+import Transactions from "@/components/Transactions/Transactions";
+
 export default function Page() {
-  return <h1>Hello, this is your transactions page</h1>
+  return (
+    <div className="py-2 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <Transactions />
+    </div>
+  );
 }
