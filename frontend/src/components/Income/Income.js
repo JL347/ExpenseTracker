@@ -1,140 +1,154 @@
 "use client"; 
 
 import { useGlobalContext } from '../../context/globalContext';
+import { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Income = () => {
-  const {addIncome} = useGlobalContext();
+  const { addIncome } = useGlobalContext();
+  const [input, setInput] = useState({
+    title: '',
+    amount: '',
+    date: '',
+    category: '',
+    description: '',
+  });
+
+  const { title, amount, date, category, description } = input;
+
+  const handleInput = (name) => (e) => {
+    setInput({ ...input, [name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+    addIncome(input);
+    setInput({
+      title: '',
+      amount: '',
+      date: '',
+      category: '',
+      description: '',
+    });
+  }
 
   return (
-    <div className="space-y-10 divide-y divide-gray-900/10">
-      <div className="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
-        <div className="px-4 sm:px-0">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Add Income</h2>
-          {/* <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p> */}
-        </div>
-
-        <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
-          <div className="px-4 py-6 sm:p-8">
-            <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="sm:col-span-3">
-                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
-                  First name
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                  />
+    <div>
+      <h1 className="text-2xl font-semibold text-gray-900">Add Income</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="overflow-hidden rounded-md bg-white shadow p-2">
+          <div>
+            <ul role="list" className="divide-y divide-gray-200">
+              <li className="px-6 py-4">
+                <div>
+                  <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
+                    Job Title
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      value={title}
+                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      placeholder="Enter your Job Title"
+                      onChange={handleInput('title')}
+                    />
+                  </div>
                 </div>
-              </div>
-
-              <div className="sm:col-span-3">
-                <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
-                  Last name
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="last-name"
-                    id="last-name"
-                    autoComplete="family-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                  />
+              </li>
+              <li className="px-6 py-4">
+                <div>
+                  <label htmlFor="amount" className="block text-sm font-medium leading-6 text-gray-900">
+                    Salary Amount
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="text"
+                      name="amount"
+                      id="amount"
+                      value={amount}
+                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      placeholder="Enter your yearly salary amount"
+                      onChange={handleInput('amount')}
+                    />
+                  </div>
                 </div>
-              </div>
-
-              <div className="sm:col-span-4">
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                  />
+              </li>
+              <li className="px-6 py-4">
+                <div>
+                  <label htmlFor="date" className="block text-sm font-medium leading-6 text-gray-900">
+                    Date
+                  </label>
+                  <div className="mt-2">
+                    <DatePicker
+                      id='date'
+                      selected={date}
+                      onChange={(date) => {
+                        setInput({ ...input, date: date });
+                      }} 
+                      placeholderText='Enter the current date'
+                      dateFormat="MM/dd/yyyy"
+                      showIcon
+                    />
+                  </div>
                 </div>
-              </div>
-
-              <div className="col-span-full">
-                <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-                  Street address
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="street-address"
-                    id="street-address"
-                    autoComplete="street-address"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                  />
+              </li>
+              <li className="px-6 py-4">
+                <div>
+                  <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">
+                    Job Category
+                  </label>
+                  <div className="mt-2">
+                    <select
+                      id="category"
+                      name="category"
+                      value={category}
+                      onChange={handleInput('category')}
+                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                    >
+                      <option value="" disabled>Select Option</option>
+                      <option value="salary">Salary</option>
+                      <option value="investments">Investments</option>
+                      <option value="rover">Rover</option>
+                      <option value="freelancing">Freelancing</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-
-              <div className="sm:col-span-2 sm:col-start-1">
-                <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                  City
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    autoComplete="address-level2"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                  />
+              </li>
+              <li className="px-6 py-4">
+                <div>
+                  <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
+                    Description
+                  </label>
+                  <div className="mt-2">
+                    <textarea
+                      rows={4}
+                      name="description"
+                      id="description"
+                      value={description}
+                      onChange={handleInput('description')}
+                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      defaultValue={'Enter a brief description for this input'}
+                    />
+                  </div>
                 </div>
-              </div>
-
-              <div className="sm:col-span-2">
-                <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
-                  State / Province
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="region"
-                    id="region"
-                    autoComplete="address-level1"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:col-span-2">
-                <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
-                  ZIP / Postal code
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="postal-code"
-                    id="postal-code"
-                    autoComplete="postal-code"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
-          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-            <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-              Cancel
-            </button>
+          <div className="flex justify-end">
             <button
-              type="submit"
-              className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              type="button"
+              className="mt-2 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              onClick={handleSubmit}
             >
-              Save
+              Add Income
             </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
