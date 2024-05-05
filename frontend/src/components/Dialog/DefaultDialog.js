@@ -65,7 +65,7 @@ export default function DefaultDialog({
                       <div className="hidden sm:block absolute top-0 right-0 m-4">
                         <button
                           type="button"
-                          className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                          className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                           onClick={() => setOpen(false)}
                         >
                           <span className="sr-only">Close</span>

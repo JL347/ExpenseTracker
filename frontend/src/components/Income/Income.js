@@ -80,15 +80,15 @@ const Income = () => {
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{income.amount}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{income.category}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {dayjs(income.date).format('DD/MM/YYYY')}
+                          {dayjs(income.date).format('MMM DD, YYYY')}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{income.description}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <a href="#" className="text-blue-600 hover:text-blue-900">
+                          <a href="#" className="text-sky-600 hover:text-sky-900">
                             Edit<span className="sr-only">, {income.title}</span>
                           </a>
                           <a 
-                            className="text-blue-600 hover:text-blue-900 ml-2 cursor-pointer"
+                            className="text-sky-600 hover:text-sky-900 ml-2 cursor-pointer"
                             onClick={() => deleteIncome(income._id)}
                           >
                             Delete<span className="sr-only">, {income.title}</span>

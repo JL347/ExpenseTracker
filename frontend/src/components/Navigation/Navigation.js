@@ -10,7 +10,8 @@ import {
   CurrencyDollarIcon
 } from '@heroicons/react/24/outline'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import Image from 'next/image';
+import Logo from '../../../public/logo/logo.png'
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
@@ -21,34 +22,34 @@ export default function Navigation() {
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <CurrencyDollarIcon className="h-10 w-10 text-green-600" aria-hidden="true" />
+                  <Image src={Logo} alt="logo" width={40} height={40} />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <a
                     href="/dashboard"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/dashboard' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-900`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/dashboard' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-900`}
                   >
                     Dashboard
                   </a>
                   <a
                     href="/transactions"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/transactions' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/transactions' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
                   >
                     Transactions
                   </a>
                   <a
                     href="/income"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/income' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/income' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
                   >
                     Income
                   </a>
                   <a
                     href="/expenses"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/expenses' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/expenses' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
                   >
                     Expenses
                   </a>
@@ -57,7 +58,7 @@ export default function Navigation() {
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
                 {/* <button
                   type="button"
-                  className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -67,7 +68,7 @@ export default function Navigation() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <Bars3Icon className="h-8 w-8 text-gray-600" aria-hidden="true" />
@@ -119,7 +120,7 @@ export default function Navigation() {
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -134,11 +135,11 @@ export default function Navigation() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 pb-3 pt-2">
-              {/* Current: "bg-blue-50 border-blue-500 text-blue-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
+              {/* Current: "bg-sky-50 border-sky-500 text-sky-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block border-l-4 border-blue-500 bg-blue-50 py-2 pl-3 pr-4 text-base font-medium text-blue-700"
+                className="block border-l-4 border-sky-500 bg-sky-50 py-2 pl-3 pr-4 text-base font-medium text-sky-700"
               >
                 Dashboard
               </Disclosure.Button>
@@ -179,7 +180,7 @@ export default function Navigation() {
                 </div>
                 <button
                   type="button"
-                  className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>

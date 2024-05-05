@@ -61,7 +61,7 @@ export default function AddExpenseModal({ open, close }) {
                         name="title"
                         id="title"
                         value={title}
-                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                         placeholder="Enter the title of the expense"
                         onChange={handleInput('title')}
                       />
@@ -79,7 +79,7 @@ export default function AddExpenseModal({ open, close }) {
                         name="amount"
                         id="amount"
                         value={amount}
-                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                         placeholder="Enter the amount of the expense"
                         onChange={handleInput('amount')}
                       />
@@ -116,7 +116,7 @@ export default function AddExpenseModal({ open, close }) {
                         name="category"
                         value={category}
                         onChange={handleInput('category')}
-                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                       >
                         <option value="" disabled>Select Option</option>
                         <option value="groceries">Groceries</option>
