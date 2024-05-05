@@ -7,40 +7,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Button from '../Button/Button';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import AddIncomeModal from './components/AddIncomeModal';
+import dayjs from 'dayjs';
 
 const Income = () => {
   const [openAddIncomeModal, setOpenAddIncomeModal] = useState({ open: false, income: null });
 
   const {
-    addIncome,
     incomes,
     getIncomes
   } = useGlobalContext();
-  const [input, setInput] = useState({
-    title: '',
-    amount: '',
-    date: '',
-    category: '',
-    description: '',
-  });
-
-  const { title, amount, date, category, description } = input;
-
-  const handleInput = (name) => (e) => {
-    setInput({ ...input, [name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addIncome(input);
-    setInput({
-      title: '',
-      amount: '',
-      date: '',
-      category: '',
-      description: '',
-    });
-  }
 
   const handleOpenAddIncomeModal = (income) => {
     setOpenAddIncomeModal({ open: true,income })
@@ -52,127 +27,77 @@ const Income = () => {
 
   return (
     <>
-      {/* <h1 className="text-2xl font-semibold text-gray-900">Add Income</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="overflow-hidden rounded-md bg-white shadow p-2">
-          <div>
-            <ul role="list" className="divide-y divide-gray-200">
-              <li className="px-6 py-4">
-                <div>
-                  <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
-                    Job Title
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="title"
-                      id="title"
-                      value={title}
-                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                      placeholder="Enter your Job Title"
-                      onChange={handleInput('title')}
-                    />
-                  </div>
-                </div>
-              </li>
-              <li className="px-6 py-4">
-                <div>
-                  <label htmlFor="amount" className="block text-sm font-medium leading-6 text-gray-900">
-                    Salary Amount
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="amount"
-                      id="amount"
-                      value={amount}
-                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                      placeholder="Enter your yearly salary amount"
-                      onChange={handleInput('amount')}
-                    />
-                  </div>
-                </div>
-              </li>
-              <li className="px-6 py-4">
-                <div>
-                  <label htmlFor="date" className="block text-sm font-medium leading-6 text-gray-900">
-                    Date
-                  </label>
-                  <div className="mt-2">
-                    <DatePicker
-                      id='date'
-                      selected={date}
-                      onChange={(date) => {
-                        setInput({ ...input, date: date });
-                      }} 
-                      placeholderText='Enter the current date'
-                      dateFormat="MM/dd/yyyy"
-                      showIcon
-                    />
-                  </div>
-                </div>
-              </li>
-              <li className="px-6 py-4">
-                <div>
-                  <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">
-                    Job Category
-                  </label>
-                  <div className="mt-2">
-                    <select
-                      id="category"
-                      name="category"
-                      value={category}
-                      onChange={handleInput('category')}
-                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-                    >
-                      <option value="" disabled>Select Option</option>
-                      <option value="salary">Salary</option>
-                      <option value="investments">Investments</option>
-                      <option value="rover">Rover</option>
-                      <option value="freelancing">Freelancing</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-              </li>
-              <li className="px-6 py-4">
-                <div>
-                  <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
-                    Description
-                  </label>
-                  <div className="mt-2">
-                    <textarea
-                      rows={4}
-                      name="description"
-                      id="description"
-                      value={description}
-                      onChange={handleInput('description')}
-                      className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="Enter a description"
-                    />
-                  </div>
-                </div>
-              </li>
-            </ul>
+      <div>
+        <div className="sm:flex sm:items-center">
+          <div className="sm:flex-auto">
+            <h1 className="text-xl font-semibold leading-6 text-gray-900">Income</h1>
+            <p className="mt-2 text-sm text-gray-700">
+              A list of all the incomes you have added.
+            </p>
           </div>
-          <div className="flex justify-end">
+          <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
             <Button
-              onClick={handleSubmit}
+              onClick={() => handleOpenAddIncomeModal()}
             >
               <PlusIcon className="h-5 w-5 mr-2" />
               Add Income
             </Button>
           </div>
         </div>
-      </form> */}
-
-      <Button
-        onClick={() => handleOpenAddIncomeModal()}
-      >
-        <PlusIcon className="h-5 w-5 mr-2" />
-        Add Income
-      </Button>
-
+        <div className="mt-8 flow-root">
+          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+              <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                        Title
+                      </th>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Amount
+                      </th>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Category
+                      </th>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Date
+                      </th>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Description
+                      </th>
+                      <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                        <span className="sr-only">Edit</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    {incomes.map((income) => (
+                      <tr key={income.email}>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                          {income.title}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{income.amount}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{income.category}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {dayjs(income.date).format('DD/MM/YYYY')}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{income.description}</td>
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <a href="#" className="text-blue-600 hover:text-blue-900">
+                            Edit<span className="sr-only">, {income.name}</span>
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <AddIncomeModal
         open={openAddIncomeModal.open}
         close={() =>
