@@ -7,15 +7,12 @@ import {
   Bars3Icon,
   BellIcon,
   XMarkIcon,
-  CurrencyDollarIcon
 } from '@heroicons/react/24/outline'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image';
 import Logo from '../../../public/logo/logo.png'
 
 export default function Navigation() {
-  const [open, setOpen] = useState(false)
-  const [active, setActive] = useState(false)
   const pathname = usePathname()
 
   return (
@@ -31,25 +28,25 @@ export default function Navigation() {
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   <a
                     href="/dashboard"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/dashboard' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-900`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/dashboard' ? 'border-sky-500 text-gray-900 hover:text-gray-700' : 'border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400'} px-1 pt-1 text-sm font-medium`}
                   >
                     Dashboard
                   </a>
                   <a
                     href="/transactions"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/transactions' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/transactions' ? 'border-sky-500 text-gray-900 hover:text-gray-700' : 'border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400'} px-1 pt-1 text-sm font-medium`}
                   >
                     Transactions
                   </a>
                   <a
                     href="/income"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/income' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/income' ? 'border-sky-500 text-gray-900 hover:text-gray-700' : 'border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400'} px-1 pt-1 text-sm font-medium`}
                   >
                     Income
                   </a>
                   <a
                     href="/expenses"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/expenses' ? 'border-sky-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
+                    className={`inline-flex items-center border-b-2 ${pathname === '/expenses' ? 'border-sky-500 text-gray-900 hover:text-gray-700' : 'border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400'} px-1 pt-1 text-sm font-medium`}
                   >
                     Expenses
                   </a>
@@ -87,7 +84,7 @@ export default function Navigation() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/profile"
                             className={(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Your Profile
@@ -97,7 +94,7 @@ export default function Navigation() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/settings"
                             className={(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Settings
@@ -107,7 +104,7 @@ export default function Navigation() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/login"
                             className={(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
