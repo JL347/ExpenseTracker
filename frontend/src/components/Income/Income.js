@@ -2,8 +2,6 @@
 
 import { useGlobalContext } from '../../context/globalContext';
 import { useEffect, useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import Button from '../Button/Button';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import AddIncomeModal from './components/AddIncomeModal';
@@ -14,7 +12,8 @@ const Income = () => {
 
   const {
     incomes,
-    getIncomes
+    getIncomes,
+    deleteIncome,
   } = useGlobalContext();
 
   const handleOpenAddIncomeModal = (income) => {
@@ -23,7 +22,7 @@ const Income = () => {
 
   useEffect(() => {
     getIncomes();
-  }, []);
+  }, [incomes]);
 
   return (
     <>
@@ -85,7 +84,16 @@ const Income = () => {
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{income.description}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                           <a href="#" className="text-blue-600 hover:text-blue-900">
-                            Edit<span className="sr-only">, {income.name}</span>
+                            Edit<span className="sr-only">, {income.title}</span>
+                          </a>
+                          <a 
+                            className="text-blue-600 hover:text-blue-900 ml-2 cursor-pointer"
+                            onClick={() => {
+                              deleteIncome(income._id),
+                              getIncomes()
+                            }}
+                          >
+                            Delete<span className="sr-only">, {income.title}</span>
                           </a>
                         </td>
                       </tr>

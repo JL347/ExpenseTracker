@@ -9,10 +9,13 @@ import {
   XMarkIcon,
   CurrencyDollarIcon
 } from '@heroicons/react/24/outline'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(false)
+  const pathname = usePathname()
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -25,28 +28,27 @@ export default function Navigation() {
                   <CurrencyDollarIcon className="h-10 w-10 text-green-600" aria-hidden="true" />
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {/* Current: "border-blue-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <a
                     href="/dashboard"
-                    className="inline-flex items-center border-b-2 border-blue-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className={`inline-flex items-center border-b-2 ${pathname === '/dashboard' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-900`}
                   >
                     Dashboard
                   </a>
                   <a
                     href="/transactions"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`inline-flex items-center border-b-2 ${pathname === '/transactions' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
                   >
                     Transactions
                   </a>
                   <a
                     href="/income"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`inline-flex items-center border-b-2 ${pathname === '/income' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
                   >
                     Income
                   </a>
                   <a
                     href="/expenses"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`inline-flex items-center border-b-2 ${pathname === '/expenses' ? 'border-blue-500' : 'border-transparent'} px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700`}
                   >
                     Expenses
                   </a>

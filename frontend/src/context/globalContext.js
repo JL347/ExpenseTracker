@@ -22,11 +22,14 @@ export const GlobalProvider = ({ children }) => {
 
   const getIncomes = async () => { 
     const response = await axios.get(`${BASE_URL}/get-incomes`)
-      setIncomes(response.data)
-      // .catch((error) => {
-      //   setError(error.response.data.message);
-      // });
-      console.log(response.data)
+      setIncomes(response.data);
+  }
+
+  const deleteIncome = async (id) => {
+    const response = await axios.delete(`${BASE_URL}/delete-income/${id}`)
+      .catch((error) => {
+        setError(error.response.data.message);
+      });
   }
 
   return (
@@ -42,6 +45,7 @@ export const GlobalProvider = ({ children }) => {
         setError,
         addIncome,
         getIncomes,
+        deleteIncome,
       }}
     >
       {children}

@@ -11,6 +11,7 @@ import DefaultDialog from '../../Dialog/DefaultDialog';
 export default function AddIncomeModal({ open, close }) {
   const {
     addIncome,
+    getIncomes,
   } = useGlobalContext();
   const [input, setInput] = useState({
     title: '',
@@ -36,6 +37,8 @@ export default function AddIncomeModal({ open, close }) {
       category: '',
       description: '',
     });
+    getIncomes();
+    close();
   }
 
   return (
