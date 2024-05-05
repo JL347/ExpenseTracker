@@ -4,9 +4,18 @@ import { useGlobalContext } from '../../context/globalContext';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Button from '../Button/Button';
+import { PlusIcon } from '@heroicons/react/24/outline';
+import AddIncomeModal from './components/AddIncomeModal';
 
 const Income = () => {
-  const { addIncome } = useGlobalContext();
+  const [openAddIncomeModal, setOpenAddIncomeModal] = useState({ open: false, income: null });
+
+  const {
+    addIncome,
+    incomes,
+    getIncomes
+  } = useGlobalContext();
   const [input, setInput] = useState({
     title: '',
     amount: '',
@@ -21,7 +30,7 @@ const Income = () => {
     setInput({ ...input, [name]: e.target.value });
   };
 
-  const handleSubmit = (e) => { 
+  const handleSubmit = (e) => {
     e.preventDefault();
     addIncome(input);
     setInput({
@@ -33,9 +42,17 @@ const Income = () => {
     });
   }
 
+  const handleOpenAddIncomeModal = (income) => {
+    setOpenAddIncomeModal({ open: true,income })
+  }
+
+  useEffect(() => {
+    getIncomes();
+  }, []);
+
   return (
-    <div>
-      <h1 className="text-2xl font-semibold text-gray-900">Add Income</h1>
+    <>
+      {/* <h1 className="text-2xl font-semibold text-gray-900">Add Income</h1>
       <form onSubmit={handleSubmit}>
         <div className="overflow-hidden rounded-md bg-white shadow p-2">
           <div>
@@ -131,7 +148,7 @@ const Income = () => {
                       value={description}
                       onChange={handleInput('description')}
                       className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      defaultValue={'Enter a brief description for this input'}
+                      placeholder="Enter a description"
                     />
                   </div>
                 </div>
@@ -139,17 +156,33 @@ const Income = () => {
             </ul>
           </div>
           <div className="flex justify-end">
-            <button
-              type="button"
-              className="mt-2 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            <Button
               onClick={handleSubmit}
             >
+              <PlusIcon className="h-5 w-5 mr-2" />
               Add Income
-            </button>
+            </Button>
           </div>
         </div>
-      </form>
-    </div>
+      </form> */}
+
+      <Button
+        onClick={() => handleOpenAddIncomeModal()}
+      >
+        <PlusIcon className="h-5 w-5 mr-2" />
+        Add Income
+      </Button>
+
+      <AddIncomeModal
+        open={openAddIncomeModal.open}
+        close={() =>
+          setOpenAddIncomeModal({
+            open: false,
+            income: null,
+          })
+        }
+      />
+    </>
   );
 };
 

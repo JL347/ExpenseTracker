@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:3000/api/v1';
 export const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
-  const [income, setIncome] = useState([]);
+  const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,18 +20,28 @@ export const GlobalProvider = ({ children }) => {
       });
   }
 
+  const getIncomes = async () => { 
+    const response = await axios.get(`${BASE_URL}/get-incomes`)
+      setIncomes(response.data)
+      // .catch((error) => {
+      //   setError(error.response.data.message);
+      // });
+      console.log(response.data)
+  }
+
   return (
     <GlobalContext.Provider
       value={{
-        income,
-        setIncome,
+        incomes,
+        setIncomes,
         expenses,
         setExpenses,
         loading,
         setLoading,
         error,
         setError,
-        addIncome
+        addIncome,
+        getIncomes,
       }}
     >
       {children}
