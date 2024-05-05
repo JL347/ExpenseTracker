@@ -1,11 +1,10 @@
 "use client"; 
 
 import { useGlobalContext } from '../../../context/globalContext';
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Button from '../../Button/Button';
-import { PlusIcon } from '@heroicons/react/24/outline';
 import DefaultDialog from '../../Dialog/DefaultDialog';
 
 export default function AddIncomeModal({ open, close }) {
@@ -37,7 +36,6 @@ export default function AddIncomeModal({ open, close }) {
       category: '',
       description: '',
     });
-    getIncomes();
     close();
   }
 
@@ -154,8 +152,7 @@ export default function AddIncomeModal({ open, close }) {
               <Button
                 onClick={handleSubmit}
               >
-                <PlusIcon className="h-5 w-5 mr-2" />
-                Add Income
+                Add
               </Button>
             </div>
           </div>

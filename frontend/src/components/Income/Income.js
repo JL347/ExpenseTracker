@@ -14,6 +14,7 @@ const Income = () => {
     incomes,
     getIncomes,
     deleteIncome,
+    totalIncome,
   } = useGlobalContext();
 
   const handleOpenAddIncomeModal = (income) => {
@@ -22,7 +23,7 @@ const Income = () => {
 
   useEffect(() => {
     getIncomes();
-  }, [incomes]);
+  }, []);
 
   return (
     <>
@@ -31,7 +32,7 @@ const Income = () => {
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold leading-6 text-gray-900">Income</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the incomes you have added.
+              Total Income: ${totalIncome}
             </p>
           </div>
           <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -88,10 +89,7 @@ const Income = () => {
                           </a>
                           <a 
                             className="text-blue-600 hover:text-blue-900 ml-2 cursor-pointer"
-                            onClick={() => {
-                              deleteIncome(income._id),
-                              getIncomes()
-                            }}
+                            onClick={() => deleteIncome(income._id)}
                           >
                             Delete<span className="sr-only">, {income.title}</span>
                           </a>

@@ -18,6 +18,7 @@ export const GlobalProvider = ({ children }) => {
       .catch((error) => {
         setError(error.response.data.message);
       });
+    getIncomes();
   }
 
   const getIncomes = async () => { 
@@ -30,7 +31,10 @@ export const GlobalProvider = ({ children }) => {
       .catch((error) => {
         setError(error.response.data.message);
       });
+    getIncomes();
   }
+
+  const totalIncome = incomes.reduce((acc, item) => (acc += parseInt(item.amount)), 0);
 
   return (
     <GlobalContext.Provider
@@ -46,6 +50,7 @@ export const GlobalProvider = ({ children }) => {
         addIncome,
         getIncomes,
         deleteIncome,
+        totalIncome,
       }}
     >
       {children}
