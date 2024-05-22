@@ -59,6 +59,8 @@ export const GlobalProvider = ({ children }) => {
 
   const totalExpenses = expenses.reduce((acc, item) => (acc += parseInt(item.amount)), 0);
 
+  const totalBalance = totalIncome - totalExpenses;
+
   return (
     <GlobalContext.Provider
       value={{
@@ -78,6 +80,7 @@ export const GlobalProvider = ({ children }) => {
         getIncomes,
         deleteIncome,
         totalIncome,
+        totalBalance
       }}
     >
       {children}

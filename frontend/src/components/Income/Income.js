@@ -27,7 +27,7 @@ const Income = () => {
 
   return (
     <>
-      <div>
+      <div className="h-screen">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold leading-6 text-gray-900">Income</h1>

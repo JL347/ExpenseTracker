@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <div className="bg-gray-50 h-screen w-screen">
+        <div className="bg-gray-50">
           <GlobalProvider>
             <Navigation />
             {children}
