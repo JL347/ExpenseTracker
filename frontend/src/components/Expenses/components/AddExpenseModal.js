@@ -11,6 +11,7 @@ export default function AddExpenseModal({ open, close }) {
   const {
     addExpense,
     getExpenses,
+    error
   } = useGlobalContext();
   const [input, setInput] = useState({
     title: '',
@@ -46,6 +47,7 @@ export default function AddExpenseModal({ open, close }) {
       title="Add Expense"
     >
       <div>
+        {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="overflow-hidden">
             <div>

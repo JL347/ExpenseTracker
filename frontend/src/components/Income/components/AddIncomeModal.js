@@ -11,6 +11,7 @@ export default function AddIncomeModal({ open, close }) {
   const {
     addIncome,
     getIncomes,
+    error,
   } = useGlobalContext();
   const [input, setInput] = useState({
     title: '',
@@ -46,6 +47,7 @@ export default function AddIncomeModal({ open, close }) {
       title="Add Income"
     >
       <div>
+        {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="overflow-hidden">
             <div>
