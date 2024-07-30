@@ -33,12 +33,6 @@ export default function Navigation() {
                     Dashboard
                   </a>
                   <a
-                    href="/transactions"
-                    className={`inline-flex items-center border-b-2 ${pathname === '/transactions' ? 'border-sky-500 text-gray-900 hover:text-gray-700' : 'border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400'} px-1 pt-1 text-sm font-medium`}
-                  >
-                    Transactions
-                  </a>
-                  <a
                     href="/income"
                     className={`inline-flex items-center border-b-2 ${pathname === '/income' ? 'border-sky-500 text-gray-900 hover:text-gray-700' : 'border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400'} px-1 pt-1 text-sm font-medium`}
                   >
