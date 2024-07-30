@@ -61,7 +61,9 @@ export const GlobalProvider = ({ children }) => {
 
   const totalBalance = totalIncome - totalExpenses;
 
-  const transactionHistory = [...incomes, ...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const transactionHistory = () => {
+    return [...incomes, ...expenses].sort((a, b) => new Date(b.date) - new Date(a.date));
+  };
 
   return (
     <GlobalContext.Provider
