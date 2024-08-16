@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from 'react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import {
@@ -10,7 +9,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image';
-import Logo from '../../../public/logo/logo.png'
+import Logo from '../../../public/logo/Logo.png';
 
 export default function Navigation() {
   const pathname = usePathname()
