@@ -3,7 +3,7 @@
 import { createContext, useState, useContext } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'https://expensetracker-frontend-i91j.onrender.com';
+const BASE_URL = 'https://expensetracker-backend-0au2.onrender.com';
 
 export const GlobalContext = createContext({});
 
