@@ -14,7 +14,7 @@ export const GlobalProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const addIncome = async (income) => {
-    const response = await axios.post(`${BASE_URL}/add-income`, income)
+    const response = await axios.post(`${BASE_URL}/api/v1/add-income`, income)
       .catch((error) => {
         setError(error.response.data.message);
       });
@@ -22,14 +22,14 @@ export const GlobalProvider = ({ children }) => {
   }
 
   const getIncomes = async () => { 
-    const response = await axios.get(`${BASE_URL}/get-incomes`)
+    const response = await axios.get(`${BASE_URL}/api/v1/get-incomes`)
     setIncomes(response.data);
     
     console.log(response)
   }
 
   const deleteIncome = async (id) => {
-    const response = await axios.delete(`${BASE_URL}/delete-income/${id}`)
+    const response = await axios.delete(`${BASE_URL}/api/v1/delete-income/${id}`)
       .catch((error) => {
         setError(error.response.data.message);
       });
@@ -39,7 +39,7 @@ export const GlobalProvider = ({ children }) => {
   const totalIncome = incomes.reduce((acc, item) => (acc += parseInt(item.amount)), 0);
 
   const addExpense = async (expense) => {
-    const response = await axios.post(`${BASE_URL}/add-expense`, expense)
+    const response = await axios.post(`${BASE_URL}/api/v1/add-expense`, expense)
       .catch((error) => {
         setError(error.response.data.message);
       });
@@ -47,14 +47,14 @@ export const GlobalProvider = ({ children }) => {
   }
 
   const getExpenses = async () => { 
-    const response = await axios.get(`${BASE_URL}/get-expenses`)
+    const response = await axios.get(`${BASE_URL}/api/v1/get-expenses`)
     setExpenses(response.data);
     
     console.log(response)
   }
 
   const deleteExpense = async (id) => {
-    const response = await axios.delete(`${BASE_URL}/delete-expense/${id}`)
+    const response = await axios.delete(`${BASE_URL}/api/v1/delete-expense/${id}`)
       .catch((error) => {
         setError(error.response.data.message);
       });
