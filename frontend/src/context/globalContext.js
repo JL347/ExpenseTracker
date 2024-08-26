@@ -23,7 +23,9 @@ export const GlobalProvider = ({ children }) => {
 
   const getIncomes = async () => { 
     const response = await axios.get(`${BASE_URL}/get-incomes`)
-      setIncomes(response.data);
+    setIncomes(response.data);
+    
+    console.log(response)
   }
 
   const deleteIncome = async (id) => {
@@ -46,7 +48,9 @@ export const GlobalProvider = ({ children }) => {
 
   const getExpenses = async () => { 
     const response = await axios.get(`${BASE_URL}/get-expenses`)
-      setExpenses(response.data);
+    setExpenses(response.data);
+    
+    console.log(response)
   }
 
   const deleteExpense = async (id) => {
